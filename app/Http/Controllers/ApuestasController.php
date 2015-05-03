@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Apuestas;
+use App\User;
 use Input;
 use Redirect;
 
@@ -15,6 +16,14 @@ class ApuestasController extends Controller {
 		'total' => ['required', 'numeric'],
 		'redondeo' => ['required', 'numeric'],
 	];
+
+	/**
+   * Instantiate a new UserController instance.
+   */
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
 
 	/**
 	* Display a listing of the resource.
@@ -34,7 +43,12 @@ class ApuestasController extends Controller {
 	*/
 	public function create()
 	{
-		return view('apuestas.create');
+		$users = array('' => '');
+		foreach (User::all() as $u) {
+			$users[$u->id] = $u->name;
+		}
+		asort($users);
+		return view('apuestas.create', compact('users'));
 	}
 
 	/**
@@ -49,7 +63,7 @@ class ApuestasController extends Controller {
 		$input = Input::all();
 		$apuesta = Apuestas::create( $input );
 		$apuesta->slug = $apuesta->id;
-		$apuesta->save();		
+		$apuesta->save();
 
 		return Redirect::route('apuestas.index')->with('message', 'Apuesta Creada');
 	}
@@ -73,7 +87,12 @@ class ApuestasController extends Controller {
 	*/
 	public function edit(Apuestas $apuesta)
 	{
-		return view('apuestas.edit', compact('apuesta'));
+		$users = array('' => '');
+		foreach (User::all() as $u) {
+			$users[$u->id] = $u->name;
+		}
+		asort($users);
+		return view('apuestas.create', compact('apuesta', 'users'));
 	}
 
 	/**

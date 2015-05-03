@@ -1,7 +1,6 @@
-
 <div class="form-group">
   {!! Form::label('users_id', 'Usuario:', array('class' => 'col-sm-2 control-label', 'for' => 'users_id')) !!}
-  <div class = "col-sm-10">{!! Form::text('users_id') !!}</div>
+  <div class = "col-sm-10">{!! Form::select('users_id', $users, !empty($apuesta) ? $apuesta->users_id : '') !!}</div>
 </div>
 <div class="form-group">
   {!! Form::label('total', 'Total:', array('class' => 'col-sm-2 control-label', 'for' => 'total')) !!}
