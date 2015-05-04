@@ -9,9 +9,9 @@
   <div class = "row">
     <div class = "col-sm-12">
       <div class = "well bs-component">
-        {!! Form::model(new App\Models\Apuestas, ['route' => ['apuestas.store'], 'class' => 'form-horizontal']) !!}
+        {{ Form::model(new App\Models\Apuestas, ['route' => ['apuestas.store'], 'class' => 'form-horizontal']) }}
             @include('apuestas/partials/_form', ['submit_text' => 'Crear Apuesta'])
-        {!! Form::close() !!}
+        {{ Form::close() }}
       </div>
     </div>
   </div>
