@@ -41,13 +41,12 @@
                     {{ $apuesta->updated_at }}
                   </td>
                   <td>
-                      {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE',
-                        'route' => array('apuestas.destroy', $apuesta->slug))) !!}
-                          {!! link_to_route('apuestas.edit',
-                              'Edit', array($apuesta->slug), array('class' => 'btn btn-info')) !!}
-                          {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
-
-                      {!! Form::close() !!}
+                      {{ Form::open(array('class' => 'form-inline', 'method' => 'DELETE',
+                        'route' => array('apuestas.destroy', $apuesta->slug))) }}
+                          {{ link_to_route('apuestas.edit',
+                              'Edit', array($apuesta->slug), array('class' => 'btn btn-info')) }}
+                          {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
+                      {{ Form::close() }}
                   </td>
                 </tr>
               @endforeach
