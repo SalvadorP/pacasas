@@ -1,17 +1,17 @@
 @extends('app')
 
 @section('content')
-  <div class = "row">
+  <div clas = "row">
     <div class = "col-sm-12">
-      <div class = "well"><h2>Crear Apuesta</h2></div>
-    </div>
-  </div>
-  <div class = "row">
-    <div class = "col-sm-12">
-      <div class = "well bs-component">
-        {{ Form::model(new App\Models\Apuestas, ['route' => ['apuestas.store'], 'class' => 'form-horizontal']) }}
-            @include('apuestas/partials/_form', ['submit_text' => 'Crear Apuesta'])
-        {{ Form::close() }}
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Crear Apuesta</h3>
+        </div>
+        <div class="panel-body">
+          {!! Form::model(new App\Models\Apuestas, ['route' => ['apuestas.store'], 'class' => 'form-horizontal']) !!}
+              @include('apuestas/partials/_form', ['submit_text' => 'Crear Apuesta'])
+          {!! Form::close() !!}
+        </div>
       </div>
     </div>
   </div>

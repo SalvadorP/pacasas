@@ -33,6 +33,9 @@ class ApuestasController extends Controller {
 	public function index()
 	{
 		$apuestas = Apuestas::all();
+		if (empty($apuestas)) {
+			$apuestas = array();
+		}
 		return view('apuestas.index', compact('apuestas'));
 	}
 
@@ -92,7 +95,7 @@ class ApuestasController extends Controller {
 			$users[$u->id] = $u->name;
 		}
 		asort($users);
-		return view('apuestas.create', compact('apuesta', 'users'));
+		return view('apuestas.edit', compact('apuesta', 'users'));
 	}
 
 	/**

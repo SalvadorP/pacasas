@@ -42,7 +42,9 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="{{ url('/') }}">Inicio</a></li>
-					<li>{{ link_to_route('apuestas.create', 'Crear Apuesta') }}</li>
+					@if (!Auth::guest())
+						<li>{!! link_to_route('apuestas.create', 'Crear Apuesta') !!}</li>
+					@endif
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -63,12 +65,14 @@
 	</nav>
 	<div class="container">
 		@if (Session::has('message'))
-			<div class="flash alert-info">
+			<div class="alert alert-dismissible alert-success">
+			  <button type="button" class="close" data-dismiss="alert">×</button>
 				<p>{{ Session::get('message') }}</p>
 			</div>
 		@endif
 		@if ($errors->any())
-			<div class='flash alert-danger'>
+			<div class="alert alert-dismissible alert-danger">
+			  <button type="button" class="close" data-dismiss="alert">×</button>
 				@foreach ( $errors->all() as $error )
 					<p>{{ $error }}</p>
 				@endforeach
