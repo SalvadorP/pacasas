@@ -5,7 +5,7 @@
     <div class = "col-sm-12">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="panel-title">Apuestas</h3>
+          <h3 class="panel-title">Apuestas 874.45</h3>
         </div>
         <div class="panel-body">
           @if ( !$apuestas->count() )
@@ -19,7 +19,7 @@
                     <td>Total</td>
                     <td>Redondeo</td>
                     <td>Fecha</td>
-                    {{-- <td>Opciones</td> --}}
+                    <td>Opciones</td>
                   </tr>
                 </thead>
                 <body>
@@ -39,14 +39,14 @@
                       <td>
                         {{ $apuesta->updated_at }}
                       </td>
-                      {{-- <td>
+                      <td>
                           {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE',
                             'route' => array('apuestas.destroy', $apuesta->slug))) !!}
                               {!! link_to_route('apuestas.edit',
                                   'Edit', array($apuesta->slug), array('class' => 'btn btn-info')) !!}
                               {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
                           {!! Form::close() !!}
-                      </td> --}}
+                      </td>
                     </tr>
                   @endforeach
                   <tfoot>
