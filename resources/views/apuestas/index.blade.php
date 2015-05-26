@@ -65,7 +65,7 @@
       </div>
     </div>
   </div>
-  <<script>
+  <script>
     $(document).ready(function() {
       $('#title-total').html('Apuestas {{$total}}')
     });
