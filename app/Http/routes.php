@@ -15,6 +15,9 @@ Route::get('/', 'ApuestasController@index');
 
 Route::get('home', 'HomeController@index');
 
+Route::get('totales', 'ApuestasController@totales');
+Route::post('totales', 'ApuestasController@totales');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
@@ -29,3 +32,6 @@ Route::bind('apuestas', function($value, $route) {
 });
 
 Route::resource('apuestas', 'ApuestasController');
+
+
+

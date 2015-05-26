@@ -126,4 +126,20 @@ class ApuestasController extends Controller {
 		return Redirect::route('apuestas.index')->with('message', 'Apuesta Borrada.');
 	}
 
+	public function totales() 
+	{
+		$apuestasSQL = Apuestas::all();
+		$apuestas = array();
+		foreach ($apuestasSQL as $apuesta) {
+			if (empty($apuestas[$apuesta->user->name])) {
+				$apuestas[$apuesta->user->name]['total'] = 0;
+				$apuestas[$apuesta->user->name]['redondeo'] = 0;
+			}
+			$apuestas[$apuesta->user->name]['total'] += $apuesta->total; 
+			$apuestas[$apuesta->user->name]['redondeo'] += $apuesta->redondeo;
+		}
+		return view('apuestas.totales', compact('apuestas'));
+	}
+
 }
+

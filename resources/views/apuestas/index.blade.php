@@ -31,10 +31,10 @@
                         </a>
                       </td>
                       <td>
-                        {{ $apuesta->total }} <?php $total += $apuesta->total; ?>
+                        {{ $apuesta->total }} €<?php $total += $apuesta->total; ?>
                       </td>
                       <td>
-                        {{ $apuesta->redondeo }} <?php $redondeo += $apuesta->redondeo; ?>
+                        {{ $apuesta->redondeo }} €<?php $redondeo += $apuesta->redondeo; ?>
                       </td>
                       <td>
                         {{ $apuesta->updated_at }}
@@ -52,8 +52,8 @@
                   <tfoot>
                     <tr class = "info">
                       <td><strong>TOTAL</strong></td>
-                      <td><strong>{{ $total }}</strong></td>
-                      <td><strong>{{ $redondeo }}</strong></td>
+                      <td><strong>{{ $total }} €</strong></td>
+                      <td><strong>{{ $redondeo }} €</strong></td>
                       <td>&nbsp;</td>
                       <?php /*<td>&nbsp;</td> */ ?>
                     </tr>
@@ -67,7 +67,7 @@
   </div>
   <script>
     $(document).ready(function() {
-      $('#title-total').html('Apuestas {{$total}}')
+      $('#title-total').html('Apuestas {{$total}} €')
     });
   </script>
 @endsection
