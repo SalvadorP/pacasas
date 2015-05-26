@@ -5,7 +5,7 @@
     <div class = "col-sm-12">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="panel-title">Apuestas 874.45</h3>
+          <h3 class="panel-title" id = "title-total"></h3>
         </div>
         <div class="panel-body">
           @if ( !$apuestas->count() )
@@ -65,4 +65,9 @@
       </div>
     </div>
   </div>
+  <<script>
+    $(document).ready(function() {
+      $('#title-total').html('Apuestas {{$total}}')
+    });
+  </script>
 @endsection
