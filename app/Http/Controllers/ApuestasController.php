@@ -32,11 +32,17 @@ class ApuestasController extends Controller {
 	*/
 	public function index()
 	{
-		$apuestas = Apuestas::all();
-		if (empty($apuestas)) {
-			$apuestas = array();
+		$apuestasSQL = Apuestas::all();
+		$apuestas = array();
+		foreach ($apuestasSQL as $apuesta) {
+			if (empty($apuestas[$apuesta->user->name])) {
+				$apuestas[$apuesta->user->name]['total'] = 0;
+				$apuestas[$apuesta->user->name]['redondeo'] = 0;
+			}
+			$apuestas[$apuesta->user->name]['total'] += $apuesta->total; 
+			$apuestas[$apuesta->user->name]['redondeo'] += $apuesta->redondeo;
 		}
-		return view('apuestas.index', compact('apuestas'));
+		return view('apuestas.totales', compact('apuestas'));
 	}
 
 	/**
@@ -128,17 +134,11 @@ class ApuestasController extends Controller {
 
 	public function totales() 
 	{
-		$apuestasSQL = Apuestas::all();
-		$apuestas = array();
-		foreach ($apuestasSQL as $apuesta) {
-			if (empty($apuestas[$apuesta->user->name])) {
-				$apuestas[$apuesta->user->name]['total'] = 0;
-				$apuestas[$apuesta->user->name]['redondeo'] = 0;
-			}
-			$apuestas[$apuesta->user->name]['total'] += $apuesta->total; 
-			$apuestas[$apuesta->user->name]['redondeo'] += $apuesta->redondeo;
+		$apuestas = Apuestas::all();
+		if (empty($apuestas)) {
+			$apuestas = array();
 		}
-		return view('apuestas.totales', compact('apuestas'));
+		return view('apuestas.index', compact('apuestas'));
 	}
 
 }

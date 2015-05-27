@@ -46,7 +46,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="{{ url('/') }}">Inicio</a></li>
 					@if (!Auth::guest())
-						<li><a href="{{ url('/totales') }}">Ver Totales</a></li>
+						<li><a href="{{ url('/totales') }}">Ver Apuestas</a></li>
 						<li>{!! link_to_route('apuestas.create', 'Crear Apuesta') !!}</li>												
 					@endif
 				</ul>
