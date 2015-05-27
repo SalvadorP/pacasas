@@ -19,7 +19,7 @@
                     <td>Total</td>
                     <td>Redondeo</td>
                     <td>Fecha</td>
-                    <?php /*<td>Opciones</td> */ ?>
+                    <td>Opciones</td>
                   </tr>
                 </thead>
                 <body>
@@ -37,16 +37,16 @@
                         {{ $apuesta->redondeo }} €<?php $redondeo += $apuesta->redondeo; ?>
                       </td>
                       <td>
-                        {{ $apuesta->updated_at }}
+                        {{ current(explode(' ', $apuesta->updated_at)) }}
                       </td>
-                      <?php /*<td>
+                      <td>
                           {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE',
                             'route' => array('apuestas.destroy', $apuesta->slug))) !!}
                               {!! link_to_route('apuestas.edit',
-                                  'Edit', array($apuesta->slug), array('class' => 'btn btn-info')) !!}
-                              {!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!}
+                                  'E', array($apuesta->slug), array('class' => 'btn btn-info')) !!}
+                              {!! Form::submit('B', array('class' => 'btn btn-danger')) !!}
                           {!! Form::close() !!}
-                      </td> */ ?>
+                      </td>
                     </tr>
                   @endforeach
                   <tfoot>
@@ -55,7 +55,7 @@
                       <td><strong>{{ $total }} €</strong></td>
                       <td><strong>{{ $redondeo }} €</strong></td>
                       <td>&nbsp;</td>
-                      <?php /*<td>&nbsp;</td> */ ?>
+                      <td>&nbsp;</td>
                     </tr>
                   </tfoot>
                 </body>

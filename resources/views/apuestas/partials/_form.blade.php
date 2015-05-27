@@ -15,6 +15,7 @@
 <div class="form-group">
     <div class = "col-sm-10 col-sm-offset-2">
       {!! Form::submit($submit_text, ['class'=>'btn btn-primary']) !!}
+      <a href="{{ url('/totales') }}" class = "btn btn-warning">Volver</a>
     </div>
 </div>
 
