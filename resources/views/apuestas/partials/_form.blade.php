@@ -1,7 +1,7 @@
 <div class="form-group">
   {!! Form::label('users_id', 'Usuario:', array('class' => 'col-sm-2 control-label', 'for' => 'users_id')) !!}
   <div class = "col-sm-10">
-    {!! Form::select('users_id', $users, !empty($apuesta) ? $apuesta->users_id : '', ['class' => 'form-control']) !!}
+    {!! Form::select('users_id', $users, !empty($apuesta) ? $apuesta->users_id : Auth::user()->id, ['class' => 'form-control']) !!}
   </div>
 </div>
 <div class="form-group">
@@ -14,7 +14,7 @@
 </div>
 <div class="form-group">
     <div class = "col-sm-10 col-sm-offset-2">
-      {!! Form::submit($submit_text, ['class'=>'btn btn-primary']) !!}
+      {!! Form::submit($submit_text, ['class'=>'btn btn-info']) !!}
       <a href="{{ url('/totales') }}" class = "btn btn-warning">Volver</a>
     </div>
 </div>

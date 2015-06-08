@@ -6,6 +6,7 @@ use App\Models\Apuestas;
 use App\User;
 use Input;
 use Redirect;
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -32,7 +33,14 @@ class ApuestasController extends Controller {
 	*/
 	public function index()
 	{
-		$apuestasSQL = Apuestas::all();
+		$query = "SELECT SUM(total) AS total, SUM(redondeo) AS redondeo, u.name
+			FROM apuestas a
+	        LEFT JOIN users u ON u.id = a.users_id
+			GROUP BY a.users_id
+			ORDER BY redondeo DESC
+		";
+		$apuestas = DB::select($query);
+		/*$apuestasSQL = Apuestas::all();
 		$apuestas = array();
 		foreach ($apuestasSQL as $apuesta) {
 			if (empty($apuestas[$apuesta->user->name])) {
@@ -41,8 +49,9 @@ class ApuestasController extends Controller {
 			}
 			$apuestas[$apuesta->user->name]['total'] += $apuesta->total; 
 			$apuestas[$apuesta->user->name]['redondeo'] += $apuesta->redondeo;
-		}
-		return view('apuestas.totales', compact('apuestas'));
+			ksort($apuestas);
+		}*/
+		return view('apuestas.totales', ['apuestas' => $apuestas]);
 	}
 
 	/**

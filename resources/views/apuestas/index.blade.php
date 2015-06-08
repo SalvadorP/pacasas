@@ -42,9 +42,12 @@
                       <td>
                           {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE',
                             'route' => array('apuestas.destroy', $apuesta->slug))) !!}
-                              {!! link_to_route('apuestas.edit',
-                                  'E', array($apuesta->slug), array('class' => 'btn btn-info')) !!}
-                              {!! Form::submit('B', array('class' => 'btn btn-danger')) !!}
+                              <a class="btn btn-warning" href="/apuestas/{{$apuesta->id}}/edit">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                              </a>
+                              <button type = "submit" class = "btn btn-danger">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                              </button>
                           {!! Form::close() !!}
                       </td>
                     </tr>

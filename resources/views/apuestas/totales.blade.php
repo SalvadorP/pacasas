@@ -21,17 +21,27 @@
                   </tr>
                 </thead>
                 <body>
-                  @foreach( $apuestas as $nombre => $datos )
-                  <tr>
-                      <td>                        
-                          {{ $nombre }}
-                        </a>
+                  @foreach( $apuestas as $pos => $datos )
+                    <tr>
+                      <?php 
+                        $label = '';
+                        if ($pos == 0) {
+                          $label = 'text-success';
+                        }
+                        if ($pos == 6) {
+                          $label = 'text-danger';
+                        }
+                      ?> 
+                      <td class = "{{$label}}"> 
+                        @if($pos == 0) <span class="glyphicon glyphicon-king" aria-hidden="true"></span> @endif
+                        @if($pos == (count($apuestas)-1)) <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> @endif
+                        {{ $datos->name }}
                       </td>
-                      <td>
-                        {{ $datos['total'] }} € <?php $total += $datos['total']; ?>
+                      <td class = "{{$label}}">                        
+                        {{ $datos->total }} € <?php $total += $datos->total; ?>
                       </td>
-                      <td>
-                        {{ $datos['redondeo'] }} € <?php $redondeo += $datos['redondeo']; ?>
+                      <td class = "{{$label}}">                        
+                        {{ $datos->redondeo }} € <?php $redondeo += $datos->redondeo; ?>
                       </td>                      
                     </tr>
                   @endforeach
