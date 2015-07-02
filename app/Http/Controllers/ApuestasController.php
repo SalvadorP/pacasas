@@ -39,18 +39,7 @@ class ApuestasController extends Controller {
 			GROUP BY a.users_id
 			ORDER BY redondeo DESC
 		";
-		$apuestas = DB::select($query);
-		/*$apuestasSQL = Apuestas::all();
-		$apuestas = array();
-		foreach ($apuestasSQL as $apuesta) {
-			if (empty($apuestas[$apuesta->user->name])) {
-				$apuestas[$apuesta->user->name]['total'] = 0;
-				$apuestas[$apuesta->user->name]['redondeo'] = 0;
-			}
-			$apuestas[$apuesta->user->name]['total'] += $apuesta->total; 
-			$apuestas[$apuesta->user->name]['redondeo'] += $apuesta->redondeo;
-			ksort($apuestas);
-		}*/
+		$apuestas = DB::select($query);		
 		return view('apuestas.totales', ['apuestas' => $apuestas]);
 	}
 
@@ -82,6 +71,7 @@ class ApuestasController extends Controller {
 		$apuesta = Apuestas::create( $input );
 		$apuesta->slug = $apuesta->id;
 		$apuesta->save();
+		$this->sendNotificationMail($apuesta);
 
 		return Redirect::route('apuestas.index')->with('message', 'Apuesta Creada');
 	}
@@ -125,6 +115,7 @@ class ApuestasController extends Controller {
 
 		$input = array_except(Input::all(), '_method');
 		$apuesta->update($input);
+		$this->sendNotificationMail($apuesta);
 
 		return Redirect::route('apuestas.index', $apuesta->slug)->with('message', 'Apuesta actualizada.');
 	}
@@ -148,6 +139,19 @@ class ApuestasController extends Controller {
 			$apuestas = array();
 		}
 		return view('apuestas.index', compact('apuestas'));
+	}
+	
+	protected function sendNotificationMail($apuesta) {
+		// $asunto = Auth::user()->name." SUMA! ".$apuesta->total;
+		// $mensaje = Auth::user()->name." suma! ".$apuesta->total.
+		//	"€, te toca palmar = ".$apuesta->redondeo."€</p>";
+		$emails = ['', ''];
+		$data = ['total' => $apuesta->total, 'redondeo' = >$apuesta->redondeo, 'nombre' => Auth::user()->name];
+		Mail::send('apuestas.email', $data, function($message) use ($emails, $apuesta)
+		{
+			$message->from(Auth::user()->email, Auth::user()->name);
+			$message->to($emails)->subject(Auth::user()->name." SUMA! ".$apuesta->total);
+		});
 	}
 
 }
