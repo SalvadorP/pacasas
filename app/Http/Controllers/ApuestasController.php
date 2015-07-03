@@ -148,11 +148,11 @@ class ApuestasController extends Controller {
 		foreach (User::all() as $u) {
 			$emails[] = $u->email;
 		}
-		$data = ['total' => $apuesta->total, 'redondeo' => $apuesta->redondeo, 'nombre' => Auth::user()->name];
+		$data = ['total' => $apuesta->total, 'redondeo' => $apuesta->redondeo, 'nombre' => $apuesta->user->name];
 		Mail::send('apuestas.mail', $data, function($message) use ($emails, $apuesta)
 		{
-			$message->from(Auth::user()->email, Auth::user()->name);
-			$message->to($emails)->subject(Auth::user()->name." SUMA! ".$apuesta->total);
+			$message->from($apuesta->user->email, $apuesta->user->name);
+			$message->to($emails)->subject($apuesta->user->name." SUMA! ".$apuesta->total);
 		});
 	}
 
