@@ -144,16 +144,10 @@ class ApuestasController extends Controller {
 	}
 	
 	protected function sendNotificationMail($apuesta) {
-		// $asunto = Auth::user()->name." SUMA! ".$apuesta->total;
-		// $mensaje = Auth::user()->name." suma! ".$apuesta->total.
-		//	"€, te toca palmar = ".$apuesta->redondeo."€</p>";
 		$emails = array();
 		foreach (User::all() as $u) {
 			$emails[] = $u->email;
 		}
-		$em = $emails[0];
-		$emails = array();
-		$emails[0] = $em;
 		$data = ['total' => $apuesta->total, 'redondeo' => $apuesta->redondeo, 'nombre' => Auth::user()->name];
 		Mail::send('apuestas.mail', $data, function($message) use ($emails, $apuesta)
 		{
