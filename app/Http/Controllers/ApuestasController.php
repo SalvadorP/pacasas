@@ -151,8 +151,8 @@ class ApuestasController extends Controller {
 		$data = ['total' => $apuesta->total, 'redondeo' => $apuesta->redondeo, 'nombre' => $apuesta->user->name];
 		Mail::send('apuestas.mail', $data, function($message) use ($emails, $apuesta)
 		{
-			$message->from($apuesta->user->email, $apuesta->user->name);
-			$message->to($emails)->subject($apuesta->user->name." SUMA! ".$apuesta->total);
+			$message->from("info@pacasas.es", $apuesta->user->name);
+			$message->to($emails)->subject($apuesta->user->name." SUMA ".$apuesta->total."€ ");
 		});
 	}
 
