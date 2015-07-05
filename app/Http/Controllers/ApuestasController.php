@@ -35,14 +35,7 @@ class ApuestasController extends Controller {
 	*/
 	public function index()
 	{
-		$query = "SELECT SUM(total) AS total, SUM(redondeo) AS redondeo, u.name
-			FROM apuestas a
-	        LEFT JOIN users u ON u.id = a.users_id
-			GROUP BY a.users_id
-			ORDER BY redondeo DESC
-		";
-		$apuestas = DB::select($query);		
-		return view('apuestas.totales', ['apuestas' => $apuestas]);
+		return view('apuestas.totales', ['apuestas' => $this->getTotales()]);
 	}
 
 	/**
@@ -141,6 +134,20 @@ class ApuestasController extends Controller {
 			$apuestas = array();
 		}
 		return view('apuestas.index', compact('apuestas'));
+	}
+
+	public function estadisticas() {
+		return view('apuestas.stats', ['apuestas' => $this->getTotales()]);
+	}
+
+	protected function getTotales() {
+		$query = "SELECT SUM(total) AS total, SUM(redondeo) AS redondeo, u.name
+			FROM apuestas a
+	        LEFT JOIN users u ON u.id = a.users_id
+			GROUP BY a.users_id
+			ORDER BY redondeo DESC
+		";
+		return DB::select($query);
 	}
 	
 	protected function sendNotificationMail($apuesta) {

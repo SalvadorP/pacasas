@@ -18,6 +18,9 @@ Route::get('home', 'HomeController@index');
 Route::get('totales', 'ApuestasController@totales');
 Route::post('totales', 'ApuestasController@totales');
 
+Route::get('estadisticas', 'ApuestasController@estadisticas');
+Route::post('estadisticas', 'ApuestasController@estadisticas');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
