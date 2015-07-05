@@ -47,8 +47,8 @@
 					<li><a href="{{ url('/') }}">Inicio</a></li>
 					@if (!Auth::guest())
 						<li><a href="{{ url('/totales') }}">Ver Apuestas</a></li>
-						<li>{!! link_to_route('apuestas.create', 'Crear Apuesta') !!}</li>												
-						<li>{!! link_to_route('apuestas.estadisticas', 'Estadisticas') !!}</li>												
+						<li>{!! link_to_route('apuestas.create', 'Crear Apuesta') !!}</li>				
+						<li><a href="{{ url('/estadisticas') }}">Estadisticas</a></li>								
 					@endif
 				</ul>
 
