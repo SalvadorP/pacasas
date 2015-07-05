@@ -46,6 +46,8 @@
       ]);
       // Set chart options
       var options = {'title':'Ganancias totales por usuario',
+      'backgroundColor': '#303030',
+      'legend': {textStyle: {color: 'white'}},
       'width':640,
       'height':480};
 
