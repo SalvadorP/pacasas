@@ -7,12 +7,12 @@
         <div class="panel-heading">
           <h3 class="panel-title">Estadisticas</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body"> 
           <div id="stats1"></div>
         </div>
       </div>
     </div>
-  </div>
+  </div> 
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <script>    
     // Load the Visualization API and the piechart package.
@@ -48,12 +48,24 @@
       var options = {'title':'Ganancias totales por usuario',
       'backgroundColor': '#303030',
       'legend': {textStyle: {color: 'white'}},
-      'width':640,
-      'height':480};
+      'width':'100%',
+      'height':'100%',
+      chartArea: {
+            left: "3%",
+            top: "3%",
+            height: "94%",
+            width: "94%"
+        }
+      };
 
       // Instantiate and draw our chart, passing in some options.
       var chart = new google.visualization.PieChart(document.getElementById('stats1'));
       chart.draw(data, options);
     }     
+
+    $(window).on("resize", function (event) {
+        drawChart();
+    });
+
   </script>
 @endsection
